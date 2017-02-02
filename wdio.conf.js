@@ -10,7 +10,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/specs/duplicated-items/*.js'
+        './test/specs/duplicated-items/*mocha.js'
     ],
     // Patterns to exclude.
     exclude: [
@@ -114,7 +114,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'jasmine',
+    framework: 'mocha',
     //
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
@@ -135,7 +135,11 @@ exports.config = {
             // do something
         }
     },
-    
+    before: function() {
+        var chai = require('chai');
+        global.expect = chai.expect;
+        chai.Should();
+    },
     //
     // =====
     // Hooks
