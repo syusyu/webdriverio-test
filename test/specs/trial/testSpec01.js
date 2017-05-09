@@ -8,28 +8,35 @@ var assert = require('assert');
 // });
 describe('spa-manager', function() {
     it('Plan page', function () {
+        var
+            title, new_plan, devices, device, len,
+            warning_text;
+
         browser.url('https://syusyu.github.io/spa-manager/src/');
-        var title = browser.getTitle();
+        title = browser.getTitle();
         assert.equal(title, 'SPA');
 
         console.log('##### Initial state of the selected plan.')
-        var new_plan = $('[name="newplan"]');
+        new_plan = $('[name="newplan"]');
         assert.equal(new_plan.getValue(), '1');
 
         console.log('##### Device elements related to the selected plan.')
-        var devices = browser.elements('#devices option');
+        devices = browser.elements('#devices option');
         assert.equal(devices.value.length, 4);
 
         console.log('##### Select the second plan.');
         browser.click('#newplan2');
 
-        // console.log('##### Device elements related to the selected plan (2).')
-        // devices = browser.elements('#devices option');
-        // assert.equal(devices.value.length, 3);
-        //
-        // console.log('##### Get pop-up text');
-        // var warning_text = browser.getText('spa-modal-contents-body ul li');
-        // console.log('##### warning=' + warning_text);
+        console.log('##### Device elements related to the selected plan. (2)')
+        devices = browser.elements('#devices option');
+        assert.equal(devices.value.length, 3);
+
+        console.log('##### Get pop-up text');
+        browser.click('#show-popup-warning');
+        warning_text = browser.getText('.spa-modal-contents-body ul li');
+
+        assert.
+        console.log('##### warning=' + warning_text);
 
     });
 });
