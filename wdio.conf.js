@@ -140,9 +140,9 @@ exports.config = {
         }
     },
     before: function() {
-        var chai = require('chai');
-        global.expect = chai.expect;
-        chai.Should();
+        // var chai = require('chai');
+        // global.expect = chai.expect;
+        // chai.Should();
     },
     //
     // =====

@@ -24,6 +24,7 @@ describe('spa-manager', function() {
         devices = browser.elements('#devices option');
         assert.equal(devices.value.length, 4);
 
+
         console.log('##### Select the second plan.');
         browser.click('#newplan2');
 
@@ -34,9 +35,25 @@ describe('spa-manager', function() {
         console.log('##### Get pop-up text');
         browser.click('#show-popup-warning');
         warning_text = browser.getText('.spa-modal-contents-body ul li');
+        expect(warning_text).toMatch(/新プランの利用開始月の利用料金と合わせて請求さ/);
+        expect(warning_text).toMatch(/2,000円/);
+        expect(warning_text).toMatch(/プラン料金とは別に、/);
 
-        assert.
-        console.log('##### warning=' + warning_text);
 
+        console.log('##### Close popup.');
+        browser.click('#close-popup-warning');
+
+
+        console.log('##### Select the third plan.');
+        browser.click('#newplan3');
+
+        console.log('##### Device elements related to the selected plan. (3)')
+        devices = browser.elements('#devices option');
+        assert.equal(devices.value.length, 3);
+
+        console.log('##### Get pop-up text (3)');
+        browser.click('#show-popup-warning');
+        warning_text = browser.getText('.spa-modal-contents-body ul li');
+        expect(warning_text).toMatch(/3,000円/);
     });
 });
